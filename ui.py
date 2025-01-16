@@ -33,15 +33,15 @@ def send_email(to_email, subject, message, attachments=[], sender_name=''):
 st.title("Email Sender App")
 st.write("Upload a CSV file with columns: recipient, subject, message, attachments, sender_name (optional)")
 
+# Gmail credentials input
+gmail_user = st.text_input("Gmail User")
+gmail_password = st.text_input("Gmail Password", type="password")
+
 uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
     st.write(df)
-
-    # Gmail credentials input
-    gmail_user = st.text_input("Gmail User")
-    gmail_password = st.text_input("Gmail Password", type="password")
 
     if st.button("Send Emails"):
         if gmail_user and gmail_password:
